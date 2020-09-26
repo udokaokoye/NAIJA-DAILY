@@ -1,0 +1,316 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+.home_main {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px;
+}
+
+.top .featured {
+  height: auto;
+  width: 50%;
+}
+
+.top .featured .featured_bar {
+  background-color: #dddddd;
+}
+
+.top .featured .featured_bar li {
+  font-size: 14px;
+  padding: 10px;
+  color: #c20a10;
+  font-weight: bolder;
+}
+
+.top .featured .featured_main {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.top .featured .featured_main .img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.top .featured .featured_main .img img {
+  width: 100%;
+  height: 100%;
+  -webkit-transition: all 5s ease-in-out;
+  transition: all 5s ease-in-out;
+}
+
+.top .featured .featured_main .img img:hover {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+  -webkit-transition: all 5s ease-in-out;
+  transition: all 5s ease-in-out;
+}
+
+.top .featured .featured_main span {
+  font-weight: bolder;
+  font-size: 25px;
+  color: #ce0e14;
+}
+
+.top .featured .featured_sub {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 auto;
+}
+
+.top .featured .featured_sub .featured_sub_cat {
+  width: 30%;
+}
+
+.top .featured .featured_sub .featured_sub_cat .content {
+  width: 100%;
+  height: auto;
+}
+
+.top .featured .featured_sub .featured_sub_cat .content img {
+  width: 100%;
+  height: 140px;
+}
+
+.top .featured .featured_sub .featured_sub_cat .content h3 {
+  font-size: 18px;
+  overflow: hidden;
+}
+
+.top .justIn {
+  overflow-y: scroll;
+  scrollbar-color: #ec1b23;
+  height: 90vh;
+  width: 35%;
+}
+
+.top .justIn .justIn_bar {
+  background-color: #dddddd;
+}
+
+.top .justIn .justIn_bar li {
+  color: #ec1b23;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.top .justIn .justIn_news .justIn_news_cat {
+  margin-top: 20px;
+}
+
+.top .justIn .justIn_news .justIn_news_cat h5 {
+  font-size: 18px;
+}
+
+.top .justIn .justIn_news .justIn_news_cat p {
+  font-size: 13px;
+  color: #ec1b23;
+  float: right;
+  padding-right: 10px;
+}
+
+.news_categories {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin-bottom: 35px;
+}
+
+.news_categories .videos {
+  width: 49%;
+  height: auto;
+  overflow: hidden;
+}
+
+.news_categories .videos .videos_bar {
+  background-color: #dddddd;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.news_categories .videos .videos_bar li {
+  color: #ec1b23;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.news_categories .videos .videos_bar p {
+  color: #ec1b23;
+  font-size: 15px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.news_categories .videos .content {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  overflow: hidden;
+}
+
+.news_categories .videos .content .vid_cat {
+  width: 30%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.news_categories .videos .content .vid_cat .img {
+  width: 100%;
+  height: 40%;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.news_categories .videos .content .vid_cat .img img {
+  width: 100%;
+  height: 100%;
+}
+
+.news_categories .sports {
+  width: 49%;
+  height: auto;
+}
+
+.news_categories .sports .sports_bar {
+  background-color: #dddddd;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.news_categories .sports .sports_bar li {
+  color: #ec1b23;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.news_categories .sports .sports_bar p {
+  color: #ec1b23;
+  font-size: 15px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.news_categories .sports .content {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  overflow: hidden;
+}
+
+.news_categories .sports .content .sport_cat {
+  width: 30%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.news_categories .sports .content .sport_cat .img {
+  width: 100%;
+  height: 40%;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.news_categories .sports .content .sport_cat .img img {
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .top {
+    padding: 0;
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .top .featured {
+    width: 100%;
+    height: auto;
+  }
+  .top .featured .featured_sub .featured_sub_cat .content img {
+    width: 100%;
+    height: 100px;
+  }
+  .top .featured .featured_sub .featured_sub_cat .content h3 {
+    font-size: 14px;
+  }
+  .top .justIn {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  .news_categories {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 35px;
+  }
+  .news_categories .videos {
+    width: 100%;
+    height: auto;
+  }
+  .news_categories .videos .content .vid_cat h3 {
+    display: none;
+  }
+  .news_categories .sports {
+    width: 100%;
+    height: auto;
+  }
+  .news_categories .sports .content .vid_cat h3 {
+    display: none;
+  }
+}
+/*# sourceMappingURL=Home.css.map */

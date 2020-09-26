@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    overflow-x: hidden;
+}
+
+.cov {
+    width: 100%;
+    background-color: white;
+    z-index: 100;
+
+    .nav {
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: white;
+        position: fixed;
+        width: 100%;
+        height: 5.5vh;
+
+        .menu {
+            display: none;
+        }
+
+        .logo {
+            h1 {
+                font-size: 29px;
+            }
+        }
+
+        .links {
+            ul {
+                display: flex;
+
+                .link {
+                    margin-right: 25px;
+                    color: black;
+                    font-size: 17px;
+                    transition: all 0.2s ease-in-out;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid transparent;
+
+                    &:hover {
+                        transition: all 0.5s ease-in-out;
+                        border-bottom: 1px solid #CF2D2D;
+                    }
+                }
+
+                .active {
+                    border-bottom: 1px solid #CF2D2D;
+                }
+
+                .last-link {
+                    margin-right: 60px;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .cov {
+        width: 100%;
+
+        .nav {
+            padding: 0;
+            justify-content: space-between;
+            width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-right: 10px;
+            padding-left: 10px;
+            overflow: hidden;
+
+            .links {
+                display: none;
+            }
+
+            .logo {
+                width: 50%;
+
+                h1 {
+                    font-size: 25px;
+                    font-weight: bolder;
+                    text-align: left;
+                }
+            }
+
+            .menu {
+                width: 50%;
+                background-color: white;
+                display: block;
+                text-align: right;
+                margin-right: 25px;
+                cursor: pointer;
+            }
+
+        }
+
+    }
+
+    .overlay-side {
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.541);
+        position: absolute;
+        transition: all 0.5s ease-in-out;
+        z-index: 150;
+    }
+
+    .sidebar {
+        position: absolute;
+        transition: all 0.5s ease-in-out;
+        height: 100%;
+        width: 0%;
+        background-color: white;
+        transform: translateX(0px);
+        z-index: 200;
+
+        .sidebar-bar {
+            width: 100%;
+            background-color: #EC1B23;
+            margin-bottom: 10px;
+
+            .inner {
+                width: 93%;
+                height: 8.4vh;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 auto;
+
+                span {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .side-links {
+            margin-top: 25px;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+
+            ul {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                height: 100%;
+
+                .link {
+                    padding-left: 20px;
+                    padding-bottom: 20px;
+                    border-bottom: 1px solid rgb(156, 155, 155);
+                }
+            }
+        }
+
+        h1 {
+            color: white;
+        }
+    }
+}
