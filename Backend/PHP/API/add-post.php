@@ -100,12 +100,11 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
         $body = $_POST['body'];
         $slug = strtolower( str_replace( ' ', '-', $title ) );
         $category = $_POST['category'];
-        $schedule = $_POST['schedule'];
         $video = $_POST['video'];
         $author_name = $_POST['author_name'];
         $author_id = $_POST['author_id'];
         $post_id = uniqid();
-        $query = "INSERT INTO `posts` (`author_name`, `author_id`, `post_id`, `category`, `title`, `slug`, `summary`, `published`, `content`, `picture_1`, `picture_2`, `picture_3`, `picture_4`, `video`, `video_path`, `views`) VALUES (
+        $query = "INSERT INTO `posts` (`author_name`, `author_id`, `post_id`, `category`, `title`, `slug`, `summary`, `content`, `picture_1`, `picture_2`, `picture_3`, `picture_4`, `video`, `video_path`, `views`) VALUES (
             '".mysqli_real_escape_string( $link, $author_name )."', 
             '".mysqli_real_escape_string( $link, $author_id )."', 
             '".mysqli_real_escape_string( $link, $post_id )."', 
@@ -113,7 +112,6 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
             '".mysqli_real_escape_string( $link, $title )."', 
             '".mysqli_real_escape_string( $link, $slug )."', 
             '".mysqli_real_escape_string( $link, $summary )."', 
-            '".mysqli_real_escape_string( $link, $schedule )."', 
             '".mysqli_real_escape_string( $link, $body )."', 
             '".mysqli_real_escape_string( $link, $image_1 )."', 
             '".mysqli_real_escape_string( $link, $image_2 )."', 

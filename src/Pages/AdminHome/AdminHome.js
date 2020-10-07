@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import "./AdminHome.css";
 const AdminHome = () => {
+  const urlParam = useParams();
   const history = useHistory();
   const [user_id, setuser_id] = useState(null);
   const [user, setuser] = useState({});
@@ -29,8 +30,17 @@ const AdminHome = () => {
   const [newsMessagebox, setnewsMessagebox] = useState(false);
   const [newSMessageBoxColor, setnewSMessageBoxColor] = useState("green");
   const [newsmessage, setnewsmessage] = useState("");
+
+  const [editPost, seteditPost] = useState({});
+
+  const [videoPath, setvideoPath] = useState("");
+  const [img1, setimg1] = useState("");
+  const [img2, setimg2] = useState("");
+  const [img3, setimg3] = useState("");
+  const [img4, setimg4] = useState("");
+  const [postId, setpostId] = useState("");
   const verify = (id, mode) => {
-    const url = `http://192.168.43.30/PHP/api/verify.php?mode=${mode}`;
+    const url = `https://naijadaily.000webhostapp.com/verify.php?mode=${mode}`;
     // setverLoading(true);
     fetch(url, {
       method: "POST",
@@ -50,6 +60,7 @@ const AdminHome = () => {
       })
       .catch((err) => console.log(err));
   };
+
   useEffect(() => {
     const userId = localStorage.getItem("user_id");
     if (userId) {
@@ -57,12 +68,38 @@ const AdminHome = () => {
     } else {
       history.push("/admin/login");
     }
+
+    if (urlParam.id) {
+      const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?post_id=${urlParam.id}`;
+      setisLoading(true);
+      fetch(url, {
+        method: "POST",
+      })
+        .then((response) => response.json())
+        .then((res) => {
+          seteditPost(res[0]);
+          settitle(res[0].title);
+          setsummary(res[0].summary);
+          setbody(res[0].content);
+          setvideo(res[0].video);
+
+          if (res[0].video == "true") {
+            setvideoPath(res[0].video_path);
+          }
+          setimg1(res[0].picture_1);
+          setimg2(res[0].picture_2);
+          setimg3(res[0].picture_3);
+          setimg4(res[0].picture_4);
+          setpostId(res[0].post_id);
+          setisLoading(false);
+        });
+    }
   }, []);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setisLoading(true);
-    fetch("http://192.168.43.30/PHP/api/add-publisher.php", {
+    fetch("https://naijadaily.000webhostapp.com/add-publisher.php", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -102,58 +139,84 @@ const AdminHome = () => {
     var image4 = document.getElementById("postImage4").files;
 
     // var formdataa = new FormData(document.getElementById("newsForm"));
-    const url = "http://192.168.43.30/PHP/api/add-post.php";
     const formData = new FormData();
+    if (image1[0] !== null) {
+      formData.append("image1", image1[0]);
+    }
 
-    formData.append("image1", image1[0]);
-
-    if (document.getElementById("postImage2").value) {
+    if (image2[0] !== null) {
       formData.append("image2", image2[0]);
     }
 
-    if (document.getElementById("postImage3").value) {
+    if (image3[0] !== null) {
       formData.append("image3", image3[0]);
     }
 
-    if (document.getElementById("postImage4").value) {
+    if (image4[0] !== null) {
       formData.append("image4", image4[0]);
     }
 
     if (video) {
-      var videos = document.getElementById("postVideo").files;
-      for (let i = 0; i < videos.length; i++) {
-        let vid_up = videos[i];
+      if (document.getElementById("postVideo").files.length !== 0) {
+        var videos = document.getElementById("postVideo").files;
+        for (let i = 0; i < videos.length; i++) {
+          let vid_up = videos[i];
 
-        formData.append("videos[]", vid_up);
+          formData.append("videos[]", vid_up);
+        }
       }
     }
     formData.append("title", title);
     formData.append("summary", summary);
     formData.append("body", body);
     formData.append("category", category);
-    formData.append("schedule", schedule);
     formData.append("video", video);
     formData.append(
       "author_name",
       user.lastName + " " + user.middleName + " " + user.firstName
     );
     formData.append("author_id", user.user_id);
+    formData.append("video_path", videoPath);
+    formData.append("old_img1", img1);
+    formData.append("old_img2", img2);
+    formData.append("old_img3", img3);
+    formData.append("old_img4", img4);
+    formData.append("id", postId);
 
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        setisLoading(false);
-        window.scrollTo(0, 0);
-        setnewsMessagebox(true);
-        setnewsmessage(res[1]);
-        if (res[0] !== "Success") {
-          setnewSMessageBoxColor("red");
-        }
+    if (editPost.title) {
+      const url = "https://naijadaily.000webhostapp.com/update-post.php";
+      fetch(url, {
+        method: "POST",
+        body: formData,
       })
-      .catch((err) => console.log(err));
+        .then((response) => response.json())
+        .then((res) => {
+          setisLoading(false);
+          window.scrollTo(0, 0);
+          setnewsMessagebox(true);
+          setnewsmessage(res);
+          setnewSMessageBoxColor("green");
+        })
+        .catch((err) => console.log(err));
+    } else {
+      const url = "https://naijadaily.000webhostapp.com/add-post.php";
+      fetch(url, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((res) => {
+          setisLoading(false);
+          window.scrollTo(0, 0);
+          setnewsMessagebox(true);
+          console.log(res);
+          setnewsmessage(res[1]);
+          if (res[0] !== "Success") {
+            setnewSMessageBoxColor("red");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   if (isLoading) {
@@ -203,25 +266,11 @@ const AdminHome = () => {
           Register Publisher
         </button>
 
-        <button
-          style={{ width: "auto" }}
-          onClick={() => {
-            alert("clicked");
-          }}
-          className="logout"
-        >
-          View Published News
-        </button>
-
-        <button
-          style={{ width: "auto" }}
-          onClick={() => {
-            alert("clicked");
-          }}
-          className="logout"
-        >
-          View Pending News
-        </button>
+        <Link to="/admin/allNews">
+          <button style={{ width: "auto" }} className="logout">
+            View Published News
+          </button>
+        </Link>
 
         <button
           style={{ width: "auto" }}
@@ -235,7 +284,12 @@ const AdminHome = () => {
         </button>
       </div>
 
-      <div id="id01" className="modal" style={{ display: modalVisibility }}>
+      <div
+        id="id01"
+        onClick={() => setmodalVisibility("none")}
+        className="modal"
+        style={{ display: modalVisibility }}
+      >
         <form
           className="modal-content animate"
           method="post"
@@ -406,12 +460,32 @@ const AdminHome = () => {
           <div className="form-group">
             <label>Add Image / Thumbnail</label>
             <br />
+            {editPost.title ? (
+              <div>
+                <p>
+                  Image 1:{" "}
+                  {editPost.picture_1 !== "" ? editPost.picture_1 : "No file"}
+                </p>
+                <p>
+                  Image 2:{" "}
+                  {editPost.picture_2 !== "" ? editPost.picture_2 : "No file"}
+                </p>
+                <p>
+                  Image 3:{" "}
+                  {editPost.picture_3 !== "" ? editPost.picture_3 : "No file"}
+                </p>
+                <br />
+              </div>
+            ) : (
+              ""
+            )}
+
             <input
               type="file"
               id="postImage1"
               name="image1"
               accept="Images/*"
-              required
+              required={editPost.title ? false : true}
             />
           </div>
 
@@ -476,6 +550,14 @@ const AdminHome = () => {
 
           <div className="form-group">
             <label>Category</label>
+            {editPost.title ? (
+              <div>
+                <br />
+                <p>Selected category: {editPost.category}</p>
+              </div>
+            ) : (
+              ""
+            )}
             <br />
             <select
               value={category}
@@ -483,9 +565,7 @@ const AdminHome = () => {
               name="category"
               required
             >
-              <option selected value="ENTERTAINMENT">
-                Entertainment
-              </option>
+              <option value="ENTERTAINMENT">Entertainment</option>
               <option value="SPORT">Sport</option>
               <option value="METRO PLUS">Metro Plus</option>
               <option value="POLITICS">Politics</option>
@@ -498,19 +578,11 @@ const AdminHome = () => {
           <div className="form-group">
             <label>Do yo want to post now or schedule for later?</label>
             <br />
-            <div className="rad">
-              <input
-                type="checkbox"
-                onChange={() =>
-                  schedule ? setschedule(false) : setschedule(true)
-                }
-              />{" "}
-              Schedule for later
-            </div>
 
             <div className="rad">
               <input
                 type="checkbox"
+                checked={video == true ? true : false}
                 onChange={() => (video ? setvideo(false) : setvideo(true))}
               />{" "}
               Video
@@ -525,7 +597,7 @@ const AdminHome = () => {
                   id="postVideo"
                   name="videos[]"
                   accept="video/*"
-                  required
+                  required={editPost.title ? false : true}
                   multiple
                 />
               </div>

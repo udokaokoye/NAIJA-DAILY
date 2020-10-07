@@ -2,7 +2,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 20px;
   overflow-x: hidden;
 }
@@ -38,8 +38,8 @@
   display: none;
 }
 
-.cov .nav .logo h1 {
-  font-size: 29px;
+.cov .nav .logo {
+  width: 20%;
 }
 
 .cov .nav .links ul {
@@ -61,11 +61,11 @@
 .cov .nav .links ul .link:hover {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-  border-bottom: 1px solid #CF2D2D;
+  border-bottom: 1px solid #cf2d2d;
 }
 
 .cov .nav .links ul .active {
-  border-bottom: 1px solid #CF2D2D;
+  border-bottom: 1px solid #cf2d2d;
 }
 
 .cov .nav .links ul .last-link {
@@ -75,12 +75,16 @@
 @media only screen and (max-width: 768px) {
   .cov {
     width: 100%;
+    overflow: hidden;
   }
   .cov .nav {
     padding: 0;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -92,20 +96,23 @@
     display: none;
   }
   .cov .nav .logo {
-    width: 50%;
-  }
-  .cov .nav .logo h1 {
-    font-size: 25px;
-    font-weight: bolder;
-    text-align: left;
+    width: 40%;
+    height: auto;
+    margin-top: 10px;
   }
   .cov .nav .menu {
-    width: 50%;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
     background-color: white;
     display: block;
     text-align: right;
     margin-right: 25px;
     cursor: pointer;
+  }
+  .cov .nav .menu:active {
+    opacity: 0;
+    background-color: white;
   }
   .overlay-side {
     width: 100%;
@@ -129,7 +136,7 @@
   }
   .sidebar .sidebar-bar {
     width: 100%;
-    background-color: #EC1B23;
+    background-color: #ec1b23;
     margin-bottom: 10px;
   }
   .sidebar .sidebar-bar .inner {
@@ -146,7 +153,11 @@
             align-items: center;
     margin: 0 auto;
   }
+  .sidebar .sidebar-bar .inner .img {
+    width: 60%;
+  }
   .sidebar .sidebar-bar .inner span {
+    width: 10%;
     cursor: pointer;
   }
   .sidebar .side-links {
@@ -171,6 +182,7 @@
   .sidebar .side-links ul .link {
     padding-left: 20px;
     padding-bottom: 20px;
+    padding-top: 20px;
     border-bottom: 1px solid #9c9b9b;
   }
   .sidebar h1 {

@@ -160,6 +160,21 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
             }
             echo json_encode( $data );
         } else {
+            echo json_encode( 'failed' );
+        }
+    }
+
+    if ( isset( $_GET['post_id'] ) ) {
+        $postId = $_GET['post_id'];
+        $query = "SELECT * FROM posts WHERE `post_id` = '$postId'";
+        $result = mysqli_query( $link, $query );
+        $data = [];
+        if ( mysqli_num_rows( $result ) > 0 ) {
+            while ( $row = mysqli_fetch_array( $result ) ) {
+                array_push( $data, $row );
+            }
+            echo json_encode( $data );
+        } else {
             echo json_encode( $data );
         }
     }

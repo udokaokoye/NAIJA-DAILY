@@ -5,7 +5,7 @@ const News = (props) => {
   const [isLoading, setisLoading] = useState(false);
   const [allNews, setallNews] = useState([]);
   const fetchPosts = () => {
-    const url = `http://192.168.43.30/PHP/api/fetch-posts.php?category=${props.category}`;
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?category=${props.category}`;
     setisLoading(true);
     fetch(url, {
       method: "POST",

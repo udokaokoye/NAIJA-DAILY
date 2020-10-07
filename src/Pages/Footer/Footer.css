@@ -9,10 +9,11 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   background-color: black;
-  height: 30vh;
+  height: auto;
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 50px;
+  overflow: hidden;
 }
 
 footer .subscribe h5 {
@@ -33,6 +34,28 @@ footer .links_1 p {
   font-size: 16px;
   margin-bottom: 15px;
   text-align: center;
+}
+
+footer .copyright {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer .copyright .img {
+  width: 250px;
+  height: 90px;
+  overflow: hidden;
 }
 
 footer .copyright h2 {
@@ -70,6 +93,12 @@ footer .copyright h2 {
     font-size: 16px;
     margin-bottom: 25px;
     text-align: center;
+  }
+  footer .copyright .img {
+    width: 190px;
+    height: 65px;
+    overflow: hidden;
+    margin-bottom: 10px;
   }
   footer .copyright h2 {
     color: white;

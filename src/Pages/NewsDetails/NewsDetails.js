@@ -16,8 +16,9 @@ const NewsDetails = (props) => {
   const [isLoading, setisLoading] = useState(false);
   const [newsBody, setnewsBody] = useState("");
   let { slug } = useParams();
-  const fetchnews = () => {
-    const url = `http://192.168.43.30/PHP/api/fetch-posts.php?slug=${slug}`;
+  const fetchnews = (slug) => {
+    window.scrollTo(0, 0);
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?slug=${slug}`;
     setisLoading(true);
     fetch(url, {
       method: "POST",
@@ -25,6 +26,7 @@ const NewsDetails = (props) => {
       .then((response) => response.json())
       .then((res) => {
         setnews(res[0]);
+        document.title = res[0].title;
         setnewsBody(
           (res[0].content + "")
             .replace(
@@ -46,7 +48,7 @@ const NewsDetails = (props) => {
   };
 
   const fetchPosts = () => {
-    const url = `http://192.168.43.30/PHP/api/fetch-posts.php?category=News`;
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?category=News`;
     setisLoading(true);
     fetch(url, {
       method: "POST",
@@ -59,29 +61,18 @@ const NewsDetails = (props) => {
       .catch((err) => console.log(err));
   };
 
-  let ip = "";
-
-  const getIp = () => {
-    setisLoading(true);
-    fetch("http://geolocation-db.com/json/")
-      .then((res) => res.json())
-      .then(async (data) => {
-        await localStorage.setItem("user--ip", JSON.stringify(data.IPv4));
-        setisLoading(false);
-      })
-      .catch((err) => console.log(err));
-  };
-
   const setView = async () => {
-    const usp = await localStorage.getItem("user--ip");
-    const userIP = JSON.parse(usp);
+    setisLoading(true);
     const formData = new FormData();
-    formData.append("ip", userIP);
+    formData.append("ip", "userIP");
     formData.append(
       "slug",
-      (window.location.href + "").replace("http://localhost:3000/", "")
+      (window.location.href + "").replace(
+        "https://naija-daily.netlify.app/",
+        ""
+      )
     );
-    const url = "http://192.168.43.30/PHP/api/views.php";
+    const url = "https://naijadaily.000webhostapp.com/views.php";
     fetch(url, {
       method: "POST",
       body: formData,
@@ -94,13 +85,11 @@ const NewsDetails = (props) => {
       })
       .catch((err) => console.log(err));
   };
+
   useEffect(() => {
-    fetchnews();
+    fetchnews(slug);
     fetchPosts();
-    getIp();
-    setTimeout(function () {
-      setView();
-    }, 4000);
+    setView();
     window.scrollTo(0, 0);
   }, []);
 
@@ -143,6 +132,12 @@ const NewsDetails = (props) => {
     );
   }
 
+  if (news.length < 10) {
+    setnews({
+      title: "News not found",
+    });
+  }
+
   return (
     <div className="news_details_main">
       <div className="left">
@@ -150,7 +145,7 @@ const NewsDetails = (props) => {
           <h2>{news.title}</h2>
           {/* <div dangerouslySetInnerHTML={{ __html: test }} /> */}
           <hr />
-          <p>
+          <p className="published-date">
             Published <span>{news.created_at}</span>
           </p>
           <div className="share_news">
@@ -264,17 +259,27 @@ const NewsDetails = (props) => {
           <div className="other_news_1">
             {genNews.length >= 10 ? (
               genNews.slice(1, 5).map((news) => (
-                <div className="other_news_cat">
-                  <div className="img">
-                    <img
-                      width="100%"
-                      height="100%"
-                      src={news.picture_1}
-                      alt={news.title}
-                    />
+                <Link
+                  className="other_news_link"
+                  to={"/" + news.slug}
+                  slug={news.slug}
+                  style={linkStyle}
+                >
+                  <div
+                    onClick={() => fetchnews(news.slug)}
+                    className="other_news_cat"
+                  >
+                    <div className="img">
+                      <img
+                        width="100%"
+                        height="100%"
+                        src={news.picture_1}
+                        alt={news.title}
+                      />
+                    </div>
+                    <h6>{news.title}</h6>
                   </div>
-                  <h6>{news.title}</h6>
-                </div>
+                </Link>
               ))
             ) : (
               <h1>No News Available</h1>
@@ -284,17 +289,31 @@ const NewsDetails = (props) => {
           <div className="other_news_2">
             {genNews.length >= 8 ? (
               genNews.slice(6, 10).map((news) => (
-                <div className="other_news_cat">
-                  <div className="img">
-                    <img
-                      width="100%"
-                      height="100%"
-                      src={news.picture_1}
-                      alt={news.title}
-                    />
+                // <Link to={"/" + news.slug}>
+
+                <Link
+                  className="other_news_link"
+                  to={"/" + news.slug}
+                  slug={news.slug}
+                  style={linkStyle}
+                >
+                  <div
+                    onClick={() => fetchnews(news.slug)}
+                    className="other_news_cat"
+                  >
+                    <div className="img">
+                      <img
+                        width="100%"
+                        height="100%"
+                        src={news.picture_1}
+                        alt={news.title}
+                      />
+                    </div>
+                    <h6>{news.title}</h6>
                   </div>
-                  <h6>{news.title}</h6>
-                </div>
+                </Link>
+
+                // </Link>
               ))
             ) : (
               <h1>No News Available</h1>
@@ -315,8 +334,11 @@ const NewsDetails = (props) => {
             {genNews.length > 0 ? (
               genNews.map((news) => {
                 return (
-                  <Link style={linkStyle} to={news.slug}>
-                    <p onClick={fetchnews}>{news.title}</p>
+                  <Link style={linkStyle} to={"/" + news.slug}>
+                    {" "}
+                    <p onClick={() => fetchnews(news.slug)}>
+                      {news.title}
+                    </p>{" "}
                   </Link>
                 );
               })

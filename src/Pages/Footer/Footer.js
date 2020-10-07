@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 require("./Footer.css");
 
@@ -8,6 +8,7 @@ const linkStyle = {
   color: "white",
 };
 const Footer = (props) => {
+  const [browserSize, setbrowserSize] = useState(window.innerWidth);
   return (
     <div>
       <br />
@@ -49,6 +50,15 @@ const Footer = (props) => {
           <h2>
             Copyrights <strong>Naija Daily</strong> 2020
           </h2>
+          <br />
+          <div className="img">
+            <img
+              width={"100%"}
+              height={"100%"}
+              src={require("../../assets/logo-white-bold.png")}
+              alt=""
+            />
+          </div>
         </div>
       </footer>
     </div>

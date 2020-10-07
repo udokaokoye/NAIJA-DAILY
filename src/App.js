@@ -8,6 +8,7 @@ import NewsPage from "./Pages/News/News";
 import NewsDetails from "./Pages/NewsDetails/NewsDetails";
 import AdminLogin from "./Pages/AdminLogin/AdminLogin";
 import AdminHome from "./Pages/AdminHome/AdminHome";
+import AdminNews from "./Pages/AdminNews/AdminNews";
 function App(props) {
   return (
     <React.Fragment>
@@ -72,6 +73,12 @@ function App(props) {
           <Route path="/:slug" exact component={NewsDetails} />
           <Route path="/admin/login" exact component={AdminLogin} />
           <Route path="/admin/home" exact component={AdminHome} />
+          <Route
+            path="/admin/edit/:id"
+            exact
+            component={() => <AdminHome edit="edit" />}
+          />
+          <Route path="/admin/allNews" exact component={AdminNews} />
         </Switch>
         <Footer />
       </Router>

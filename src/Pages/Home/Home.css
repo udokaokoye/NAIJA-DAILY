@@ -303,7 +303,7 @@
     height: auto;
   }
   .news_categories .videos .content .vid_cat h3 {
-    display: none;
+    margin-bottom: 25px;
   }
   .news_categories .sports {
     width: 100%;

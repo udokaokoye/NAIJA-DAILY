@@ -241,3 +241,33 @@ span.psw {
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .modal {
+    .modal-content {
+      width: 100%;
+    }
+  }
+
+  .add_news {
+    width: 100%;
+
+    .messageDiv {
+      margin: 0 auto;
+      width: 50%;
+      height: 200px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      p {
+        color: white;
+        font-size: 15px;
+        text-align: center;
+      }
+    }
+  }
+}

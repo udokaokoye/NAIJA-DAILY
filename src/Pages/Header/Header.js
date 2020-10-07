@@ -77,7 +77,13 @@ const Header = () => {
                   listStyle: "none",
                 }}
               >
-                <h1>NAIJA DAILY</h1>
+                {/* <h1>NAIJA DAILY</h1> */}
+                <img
+                  width={browserSize > 768 ? "70%" : "100%"}
+                  height={browserSize > 768 ? "70%" : "100%"}
+                  src={require("../../assets/logo-black-bold.png")}
+                  alt=""
+                />
               </Link>
             </div>
             <div className="links">
@@ -214,7 +220,14 @@ const Header = () => {
       <div className="sidebar" style={sideBar ? open : close}>
         <div className="sidebar-bar">
           <div className="inner">
-            <h1>NAIJA DAILY</h1>{" "}
+            <div className="img">
+              <img
+                width={"100%"}
+                height={"100%"}
+                src={require("../../assets/logo-white-bold.png")}
+                alt=""
+              />
+            </div>{" "}
             <span
               onClick={() => {
                 setsideBar(false);

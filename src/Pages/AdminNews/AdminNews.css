@@ -1,0 +1,88 @@
+.admin-news .allnews-admin .messageDiv {
+  margin: 0 auto;
+  width: 50%;
+  height: 200px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.admin-news .allnews-admin .messageDiv p {
+  color: white;
+}
+
+.admin-news .allnews-admin .allnews-admin-cat {
+  width: 50%;
+  margin: 0 auto;
+  height: auto;
+}
+
+.admin-news .allnews-admin .allnews-admin-cat .views {
+  margin-left: 10px;
+}
+
+.admin-news .allnews-admin .allnews-admin-cat .action-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.admin-news .allnews-admin .allnews-admin-cat .action-buttons .btn-edt button {
+  width: auto;
+  border-radius: 6px;
+}
+
+.admin-news .allnews-admin .allnews-admin-cat .action-buttons .btn-del {
+  background-color: red;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 6px;
+}
+
+.admin-news .allnews-admin .allnews-admin-cat h1 {
+  font-size: 17px;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .admin-news .allnews-admin .messageDiv {
+    margin: 0 auto;
+    width: 50%;
+    height: 200px;
+    border-radius: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .admin-news .allnews-admin .messageDiv p {
+    color: white;
+    font-size: 15px;
+    text-align: center;
+  }
+  .admin-news .allnews-admin .allnews-admin-cat {
+    border: 0.5px solid black;
+    padding: 5px;
+    width: 95%;
+  }
+}
+/*# sourceMappingURL=AdminNews.css.map */

@@ -8,8 +8,12 @@ const Home = (props) => {
   const [headline, setheadline] = useState({});
   const [videos, setvideos] = useState([]);
   const [sports, setsports] = useState([]);
+  const [metroPlus, setmetroPlus] = useState([]);
+  const [entertainment, setentertainment] = useState([]);
+  const [politics, setpolitics] = useState([]);
+  const [business, setbusiness] = useState([]);
   const fetchPosts = () => {
-    const url = `http://192.168.43.30/PHP/api/fetch-posts.php?category=all`;
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?category=all`;
     setisLoading(true);
     fetch(url, {
       method: "POST",
@@ -23,7 +27,7 @@ const Home = (props) => {
   };
 
   const fetchVideos = () => {
-    const url = `http://192.168.43.30/PHP/api/fetch-posts.php?category=videos`;
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?category=videos`;
     setisLoading(true);
     fetch(url, {
       method: "POST",
@@ -36,8 +40,63 @@ const Home = (props) => {
       .catch((err) => console.log(err));
   };
 
+  const fetchMetro = () => {
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?category=metro plus`;
+    setisLoading(true);
+    fetch(url, {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        setmetroPlus(res);
+        setisLoading(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const fetchEntertainment = () => {
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?category=entertainment`;
+    setisLoading(true);
+    fetch(url, {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        setentertainment(res);
+        setisLoading(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const fetchPolitics = () => {
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?category=politics`;
+    setisLoading(true);
+    fetch(url, {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        setpolitics(res);
+        setisLoading(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const fetchBusiness = () => {
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?category=business`;
+    setisLoading(true);
+    fetch(url, {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        setbusiness(res);
+        setisLoading(false);
+      })
+      .catch((err) => console.log(err));
+  };
   const fetchSports = () => {
-    const url = `http://192.168.43.30/PHP/api/fetch-posts.php?category=sports`;
+    const url = `https://naijadaily.000webhostapp.com/fetch-posts.php?category=sports`;
     setisLoading(true);
     fetch(url, {
       method: "POST",
@@ -54,6 +113,10 @@ const Home = (props) => {
     fetchPosts();
     fetchVideos();
     fetchSports();
+    fetchMetro();
+    fetchEntertainment();
+    fetchPolitics();
+    fetchBusiness();
   }, []);
 
   if (isLoading) {
@@ -172,7 +235,7 @@ const Home = (props) => {
                   );
                 })
               ) : (
-                <h1>No News Avalable</h1>
+                <h1>No Video Avalable</h1>
               )}
             </div>
           </div>
@@ -202,7 +265,7 @@ const Home = (props) => {
                   );
                 })
               ) : (
-                <h1>No news available</h1>
+                <h1>No Sport news available</h1>
               )}
             </div>
           </div>
@@ -220,21 +283,21 @@ const Home = (props) => {
               </Link>
             </div>
             <div className="content">
-              {videos.length >= 3 ? (
-                videos.slice(0, 3).map((video) => {
+              {metroPlus.length >= 3 ? (
+                metroPlus.slice(0, 3).map((metroplus) => {
                   return (
                     <div className="vid_cat">
-                      <Link to={video.slug} style={linkStyle}>
+                      <Link to={metroplus.slug} style={linkStyle}>
                         <div className="img">
-                          <img src={video.picture_1} alt="vid-category" />
+                          <img src={metroplus.picture_1} alt="vid-category" />
                         </div>
-                        <h3>{video.title}</h3>
+                        <h3>{metroplus.title}</h3>
                       </Link>
                     </div>
                   );
                 })
               ) : (
-                <h1>No News Avalable</h1>
+                <h1>No Metro Plus News Avalable</h1>
               )}
             </div>
           </div>
@@ -250,21 +313,21 @@ const Home = (props) => {
               </Link>
             </div>
             <div className="content">
-              {sports.length >= 3 ? (
-                sports.slice(0, 3).map((sport) => {
+              {entertainment.length >= 3 ? (
+                entertainment.slice(0, 3).map((ent) => {
                   return (
                     <div className="sport_cat">
-                      <Link to={sport.slug} style={linkStyle}>
+                      <Link to={ent.slug} style={linkStyle}>
                         <div className="img">
-                          <img src={sport.picture_1} alt="vid-category" />
+                          <img src={ent.picture_1} alt="vid-category" />
                         </div>
-                        <h3>{sport.title}</h3>
+                        <h3>{ent.title}</h3>
                       </Link>
                     </div>
                   );
                 })
               ) : (
-                <h1>No news available</h1>
+                <h1>No Entertainment news available</h1>
               )}
             </div>
           </div>
@@ -282,21 +345,21 @@ const Home = (props) => {
               </Link>
             </div>
             <div className="content">
-              {videos.length >= 3 ? (
-                videos.slice(0, 3).map((video) => {
+              {politics.length >= 3 ? (
+                politics.slice(0, 3).map((politics) => {
                   return (
                     <div className="vid_cat">
-                      <Link to={video.slug} style={linkStyle}>
+                      <Link to={politics.slug} style={linkStyle}>
                         <div className="img">
-                          <img src={video.picture_1} alt="vid-category" />
+                          <img src={politics.picture_1} alt="vid-category" />
                         </div>
-                        <h3>{video.title}</h3>
+                        <h3>{politics.title}</h3>
                       </Link>
                     </div>
                   );
                 })
               ) : (
-                <h1>No News Avalable</h1>
+                <h1>No Politics News Avalable</h1>
               )}
             </div>
           </div>
@@ -312,21 +375,21 @@ const Home = (props) => {
               </Link>
             </div>
             <div className="content">
-              {sports.length >= 3 ? (
-                sports.slice(0, 3).map((sport) => {
+              {business.length >= 3 ? (
+                business.slice(0, 3).map((business) => {
                   return (
                     <div className="sport_cat">
-                      <Link to={sport.slug} style={linkStyle}>
+                      <Link to={business.slug} style={linkStyle}>
                         <div className="img">
-                          <img src={sport.picture_1} alt="vid-category" />
+                          <img src={business.picture_1} alt="vid-category" />
                         </div>
-                        <h3>{sport.title}</h3>
+                        <h3>{business.title}</h3>
                       </Link>
                     </div>
                   );
                 })
               ) : (
-                <h1>No news available</h1>
+                <h1>No Business news available</h1>
               )}
             </div>
           </div>

@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 20px;
     overflow-x: hidden;
 }
@@ -32,9 +32,7 @@
         }
 
         .logo {
-            h1 {
-                font-size: 29px;
-            }
+            width: 20%;
         }
 
         .links {
@@ -51,12 +49,12 @@
 
                     &:hover {
                         transition: all 0.5s ease-in-out;
-                        border-bottom: 1px solid #CF2D2D;
+                        border-bottom: 1px solid #cf2d2d;
                     }
                 }
 
                 .active {
-                    border-bottom: 1px solid #CF2D2D;
+                    border-bottom: 1px solid #cf2d2d;
                 }
 
                 .last-link {
@@ -67,16 +65,15 @@
     }
 }
 
-
-
-
 @media only screen and (max-width: 768px) {
     .cov {
         width: 100%;
+        overflow: hidden;
 
         .nav {
             padding: 0;
             justify-content: space-between;
+            align-items: center;
             width: 100%;
             padding-top: 10px;
             padding-bottom: 10px;
@@ -89,26 +86,31 @@
             }
 
             .logo {
-                width: 50%;
+                width: 40%;
+                height: auto;
+                margin-top: 10px;
 
-                h1 {
-                    font-size: 25px;
-                    font-weight: bolder;
-                    text-align: left;
-                }
+                // h1 {
+                //   font-size: 25px;
+                //   font-weight: bolder;
+                //   text-align: left;
+                // }
             }
 
             .menu {
-                width: 50%;
+                width: fit-content;
                 background-color: white;
                 display: block;
                 text-align: right;
                 margin-right: 25px;
                 cursor: pointer;
+
+                &:active {
+                    opacity: 0;
+                    background-color: white;
+                }
             }
-
         }
-
     }
 
     .overlay-side {
@@ -131,7 +133,7 @@
 
         .sidebar-bar {
             width: 100%;
-            background-color: #EC1B23;
+            background-color: #ec1b23;
             margin-bottom: 10px;
 
             .inner {
@@ -142,7 +144,12 @@
                 align-items: center;
                 margin: 0 auto;
 
+                .img {
+                    width: 60%;
+                }
+
                 span {
+                    width: 10%;
                     cursor: pointer;
                 }
             }
@@ -163,6 +170,7 @@
                 .link {
                     padding-left: 20px;
                     padding-bottom: 20px;
+                    padding-top: 20px;
                     border-bottom: 1px solid rgb(156, 155, 155);
                 }
             }

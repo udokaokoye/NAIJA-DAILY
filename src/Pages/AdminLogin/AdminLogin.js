@@ -11,7 +11,7 @@ const Admin = () => {
   const history = useHistory();
 
   const verify = (id, mode) => {
-    const url = `http://192.168.43.30/PHP/api/verify.php?mode=${mode}`;
+    const url = `https://naijadaily.000webhostapp.com/verify.php?mode=${mode}`;
     setisLoading(true);
     fetch(url, {
       method: "POST",
@@ -43,12 +43,8 @@ const Admin = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     setisLoading(true);
-    fetch("http://192.168.43.30/PHP/api/admin-login.php", {
+    fetch("https://naijadaily.000webhostapp.com/admin-login.php", {
       method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-type": "application/json",
-      },
       body: JSON.stringify({
         email: email,
         password: password,
@@ -68,7 +64,8 @@ const Admin = () => {
         }
 
         setisLoading(false);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   if (isLoading) {
